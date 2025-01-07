@@ -35,6 +35,8 @@ import signUpCar from "@/assets/images/signup-car.png";
 import samplemaps from "@/assets/images/samplemaps.png";
 import helmet from "@/assets/images/helmet.jpg";
 import rider from "@/assets/images/rider.png";
+import riderh from "@/assets/images/riderh.jpg";
+import profiles from "@/assets/images/profile.png";
 
 export const images = {
   onboarding1,
@@ -48,6 +50,8 @@ export const images = {
   message,
   helmet,
   rider,
+  riderh,
+  profiles,
 };
 
 export const icons = {

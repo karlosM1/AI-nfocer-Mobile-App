@@ -85,6 +85,7 @@ const Notification = () => {
             address="123 Main St"
             dateTime="January 7, 2025 10:30 AM"
             paymentStatus="Paid"
+            violation="You have been fined 400 pesos for not wearing a helmet in a required area."
           />
         )}
       />

@@ -6,6 +6,7 @@ interface NotificationCardProps {
   address: string;
   dateTime: string;
   paymentStatus: string;
+  violation: string;
 }
 const NotificationCard = ({
   riderName,
@@ -13,6 +14,7 @@ const NotificationCard = ({
   address,
   dateTime,
   paymentStatus,
+  violation,
 }: NotificationCardProps) => {
   return (
     <View style={styles.container}>
@@ -52,13 +54,13 @@ const NotificationCard = ({
           </View>
 
           <View style={styles.messageChildContainer}>
-            <Text style={styles.time}>Rider</Text>
-            <Text style={styles.time}>{riderName}</Text>
-          </View>
-
-          <View style={styles.messageChildContainer}>
             <Text style={styles.time}>Payment Status</Text>
             <Text style={styles.time}>{paymentStatus}</Text>
+          </View>
+
+          <View style={styles.violationContainer}>
+            <Text style={styles.violationTitle}>Violation</Text>
+            <Text style={styles.time}>{violation}</Text>
           </View>
         </View>
       </View>
@@ -145,5 +147,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 20,
   },
-  infoText: {},
+  violationTitle: {
+    fontSize: 14,
+    color: "red",
+    fontWeight: "semibold",
+    marginBottom: 10,
+  },
+  violationContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100%",
+    justifyContent: "space-between",
+  },
 });

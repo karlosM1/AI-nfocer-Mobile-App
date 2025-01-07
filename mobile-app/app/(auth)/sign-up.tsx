@@ -20,7 +20,7 @@ const SignUp = () => {
       <View style={styles.content}>
         <View style={styles.imageContent}>
           <Image
-            style={styles.image}
+            style={styles.imageWithOverlay}
             source={require("@/assets/images/signup-car.png")}
           />
           <Text style={styles.text}>Create You Account</Text>
@@ -88,10 +88,22 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 250,
   },
-  image: {
-    zIndex: 0,
+  imageWithOverlay: {
     width: "100%",
     height: 250,
+    zIndex: 0,
+    position: "relative",
+  },
+  overlay: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 50,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    opacity: 0.5,
   },
   text: {
     fontSize: 24,
