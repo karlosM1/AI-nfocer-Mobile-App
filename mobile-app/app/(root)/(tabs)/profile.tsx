@@ -55,7 +55,7 @@ export default Profile;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#F5F5F5",
   },
   scrollView: {
     paddingHorizontal: 20,

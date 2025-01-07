@@ -25,10 +25,7 @@ const SignIn = () => {
     <ScrollView style={styles.container}>
       <View style={styles.content}>
         <View style={styles.imageContent}>
-          <Image
-            style={styles.image}
-            source={require("@/assets/images/signup-car.png")}
-          />
+          <Image style={styles.image} source={images.riderh} />
           <Text style={styles.text}>Welcome 👋 </Text>
         </View>
         <View style={styles.Formcontainer}>

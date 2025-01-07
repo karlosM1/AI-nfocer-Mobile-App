@@ -19,10 +19,7 @@ const SignUp = () => {
     <ScrollView style={styles.container}>
       <View style={styles.content}>
         <View style={styles.imageContent}>
-          <Image
-            style={styles.imageWithOverlay}
-            source={require("@/assets/images/signup-car.png")}
-          />
+          <Image style={styles.imageWithOverlay} source={images.riderh} />
           <Text style={styles.text}>Create You Account</Text>
         </View>
         <View style={styles.Formcontainer}>
