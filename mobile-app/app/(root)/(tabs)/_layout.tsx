@@ -90,7 +90,7 @@ const Layout = () => {
           title: "Maps",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} source={icons.list} />
+            <TabIcon focused={focused} source={icons.maps} />
           ),
         }}
       />
@@ -100,7 +100,7 @@ const Layout = () => {
           title: "Notification",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} source={icons.chat} />
+            <TabIcon focused={focused} source={icons.notification} />
           ),
         }}
       />

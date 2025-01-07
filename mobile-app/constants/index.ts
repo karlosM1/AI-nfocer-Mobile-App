@@ -1,7 +1,7 @@
 import arrowDown from "../assets/icons/arrow-down.png";
 import arrowUp from "@/assets/icons/arrow-up.png";
 import backArrow from "@/assets/icons/back-arrow.png";
-import chat from "@/assets/icons/chat.png";
+import notification from "@/assets/icons/notification.png";
 import checkmark from "@/assets/icons/check.png";
 import close from "@/assets/icons/close.png";
 import dollar from "@/assets/icons/dollar.png";
@@ -10,6 +10,7 @@ import eyecross from "@/assets/icons/eyecross.png";
 import google from "@/assets/icons/google.png";
 import home from "@/assets/icons/home.png";
 import list from "@/assets/icons/list.png";
+import maps from "@/assets/icons/maps.png";
 import lock from "@/assets/icons/lock.png";
 import map from "@/assets/icons/map.png";
 import marker from "@/assets/icons/marker.png";
@@ -31,12 +32,14 @@ import onboarding1 from "@/assets/images/getstarted.png";
 import onboarding2 from "@/assets/images/onboarding2.png";
 import onboarding3 from "@/assets/images/onboarding3.png";
 import signUpCar from "@/assets/images/signup-car.png";
+import samplemaps from "@/assets/images/samplemaps.png";
 
 export const images = {
   onboarding1,
   onboarding2,
   onboarding3,
   getStarted,
+  samplemaps,
   signUpCar,
   check,
   noResult,
@@ -47,8 +50,9 @@ export const icons = {
   arrowDown,
   arrowUp,
   backArrow,
-  chat,
+  notification,
   checkmark,
+  maps,
   close,
   dollar,
   email,
