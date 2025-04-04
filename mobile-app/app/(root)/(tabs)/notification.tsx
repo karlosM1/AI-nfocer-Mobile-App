@@ -14,7 +14,6 @@ import axios from "axios";
 import NotificationCard from "@/components/Custom/NotificationCard";
 import { images, icons } from "@/constants";
 
-// Define the violation type
 interface Violation {
   number_plate: string;
   timestamp: string;
@@ -32,10 +31,7 @@ const Notification = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Configure API URL based on environment
-  // For Expo, we need to use the IP address of your computer on the local network
-  // Your FastAPI server should be running on this IP address
-  const API_URL = "http://127.0.0.1:8000"; // Replace 8000 with your FastAPI port
+  const API_URL = "http://192.168.1.3:8000";
 
   const fetchViolations = async () => {
     try {
@@ -44,23 +40,19 @@ const Notification = () => {
 
       console.log(
         "Fetching violations from:",
-        `${API_URL}/mobile/violations?limit=50&offset=0`
+        `${API_URL}/mobile/violations?limit=100&offset=0`
       );
 
-      // Use axios instead of fetch
       const response = await axios.get(
-        `${API_URL}/mobile/violations?limit=50&offset=0`,
+        `${API_URL}/mobile/violations?limit=100&offset=0`,
         {
-          timeout: 10000, // 10 second timeout
+          timeout: 10000,
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
         }
       );
-
-      console.log("Response status:", response.status);
-      console.log("Received data:", response.data);
 
       if (response.data && Array.isArray(response.data.violations)) {
         setViolations(response.data.violations);
@@ -76,19 +68,15 @@ const Notification = () => {
           console.log("Request timed out");
           setError("Request timed out. Server might be unavailable.");
         } else if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
           console.log("Error response data:", error.response.data);
           console.log("Error response status:", error.response.status);
           setError(`Server error: ${error.response.status}`);
         } else if (error.request) {
-          // The request was made but no response was received
           console.log("Error request:", error.request);
           setError(
             "No response received from server. Check if the server is running."
           );
         } else {
-          // Something happened in setting up the request that triggered an Error
           console.log("Error message:", error.message);
           setError(`Request failed: ${error.message}`);
         }
@@ -118,29 +106,29 @@ const Notification = () => {
     }
   };
 
-  // For testing - create mock violations if needed
+  // TEST
   const createMockViolations = () => {
     return [
       {
         number_plate: "ABC123",
         timestamp: new Date().toISOString(),
         isHelmet: "No Helmet",
-        cropped_image: "", // Base64 image would be too long to include here
+        cropped_image: "",
       },
       {
         number_plate: "XYZ789",
-        timestamp: new Date(Date.now() - 86400000).toISOString(), // Yesterday
+        timestamp: new Date(Date.now() - 86400000).toISOString(),
         isHelmet: "No Helmet",
         cropped_image: "",
       },
     ];
   };
 
-  // Uncomment this to use mock data for testing
-  useEffect(() => {
-    setViolations(createMockViolations());
-    setLoading(false);
-  }, []);
+  // TEST
+  // useEffect(() => {
+  //   setViolations(createMockViolations());
+  //   setLoading(false);
+  // }, []);
 
   return (
     <SafeAreaView>
@@ -217,7 +205,6 @@ const Notification = () => {
               <Text style={{ fontSize: 20, fontWeight: "bold" }}>
                 Notification ⛔
               </Text>
-              {/* Debug button to show API URL */}
               <TouchableOpacity
                 onPress={() => Alert.alert("API URL", API_URL)}
                 style={{
@@ -231,15 +218,12 @@ const Notification = () => {
         )}
         renderItem={({ item }: { item: Violation }) => (
           <NotificationCard
-            // Keep these fields static as requested
             riderName="John Doe"
-            message="Hello, how are you?"
+            message="MMDA"
             address="123 Main St"
             paymentStatus="Paid"
-            // Add violation data
             violation={`You have been fined 400 pesos for ${item.isHelmet}. License plate: ${item.number_plate}`}
             dateTime={formatDate(item.timestamp)}
-            // Pass the image if your NotificationCard component can display it
             violationImage={
               item.cropped_image
                 ? `data:image/jpeg;base64,${item.cropped_image}`

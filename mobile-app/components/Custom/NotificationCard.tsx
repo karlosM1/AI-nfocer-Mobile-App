@@ -8,7 +8,7 @@ interface NotificationCardProps {
   dateTime: string;
   paymentStatus: string;
   violation: string;
-  violationImage?: string; // Make this optional in case some notifications don't have images
+  violationImage?: string;
 }
 
 const NotificationCard = ({
