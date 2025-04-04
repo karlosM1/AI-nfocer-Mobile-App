@@ -1,5 +1,6 @@
+import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import { icons, images } from "@/constants";
+
 interface NotificationCardProps {
   riderName: string;
   message: string;
@@ -7,7 +8,9 @@ interface NotificationCardProps {
   dateTime: string;
   paymentStatus: string;
   violation: string;
+  violationImage?: string; // Make this optional in case some notifications don't have images
 }
+
 const NotificationCard = ({
   riderName,
   message,
@@ -15,149 +18,103 @@ const NotificationCard = ({
   dateTime,
   paymentStatus,
   violation,
+  violationImage,
 }: NotificationCardProps) => {
   return (
     <View style={styles.container}>
-      <View style={styles.containerChild}>
-        <View style={styles.imageContainer}>
-          <Image
-            source={images.samplemaps}
-            resizeMode="contain"
-            style={{ width: 80, height: 90, borderRadius: 12 }}
-          />
+      <View style={styles.header}>
+        <Text style={styles.riderName}>{riderName}</Text>
+        <Text style={styles.dateTime}>{dateTime}</Text>
+      </View>
 
-          <View style={styles.contentContainer}>
-            <View style={styles.iconContainer}>
-              <Image
-                source={icons.to}
-                resizeMode="contain"
-                style={{ width: 20, height: 20 }}
-              />
-              <Text style={styles.message} numberOfLines={1}>
-                {address}
-              </Text>
-            </View>
-            <View style={styles.iconContainer}>
-              <Image
-                source={icons.point}
-                resizeMode="contain"
-                style={{ width: 20, height: 20 }}
-              />
-              <Text style={styles.message}>{address}</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.containerMessage}>
-          <View style={styles.messageChildContainer}>
-            <Text style={styles.time}>Date & Time</Text>
-            <Text style={styles.time}>{dateTime}</Text>
-          </View>
+      <Text style={styles.message}>{message}</Text>
+      <Text style={styles.address}>{address}</Text>
 
-          <View style={styles.messageChildContainer}>
-            <Text style={styles.time}>Payment Status</Text>
-            <Text style={styles.time}>{paymentStatus}</Text>
-          </View>
+      <View style={styles.divider} />
 
-          <View style={styles.violationContainer}>
-            <Text style={styles.violationTitle}>Violation</Text>
-            <Text style={styles.time}>{violation}</Text>
-          </View>
-        </View>
+      <Text style={styles.violation}>{violation}</Text>
+
+      {violationImage && (
+        <Image
+          source={{ uri: violationImage }}
+          style={styles.violationImage}
+          resizeMode="contain"
+        />
+      )}
+
+      <View style={styles.footer}>
+        <Text
+          style={[
+            styles.paymentStatus,
+            { color: paymentStatus === "Paid" ? "#4CAF50" : "#F44336" },
+          ]}
+        >
+          {paymentStatus}
+        </Text>
       </View>
     </View>
   );
 };
 
-export default NotificationCard;
-
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 9,
-    borderRadius: 12,
     backgroundColor: "white",
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.5,
-    elevation: 1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
-  containerChild: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 9,
-  },
-  imageContainer: {
-    display: "flex",
+  header: {
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-between",
-  },
-  contentContainer: {
-    display: "flex",
-    flexDirection: "column",
-    marginHorizontal: 20,
-    flex: 1,
-  },
-  iconContainer: {
-    display: "flex",
-    flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    marginBottom: 8,
   },
-  text: {
-    fontSize: 30,
+  riderName: {
+    fontSize: 16,
     fontWeight: "bold",
   },
-  message: {
+  dateTime: {
     fontSize: 12,
+    color: "#666",
   },
-  containerMessage: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    marginTop: 20,
-    borderRadius: 12,
-    padding: 9,
-    alignItems: "flex-start",
-    justifyContent: "center",
-  },
-  messageChildContainer: {
-    display: "flex",
-    flexDirection: "row",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 20,
-  },
-  time: {
+  message: {
     fontSize: 14,
-    color: "#A3A3A3",
+    marginBottom: 4,
   },
-  infoContainer: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    width: "100%",
-    justifyContent: "space-between",
-    marginBottom: 20,
-  },
-  violationTitle: {
+  address: {
     fontSize: 14,
-    color: "red",
-    fontWeight: "semibold",
-    marginBottom: 10,
+    color: "#666",
+    marginBottom: 12,
   },
-  violationContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+  divider: {
+    height: 1,
+    backgroundColor: "#eee",
+    marginVertical: 12,
+  },
+  violation: {
+    fontSize: 14,
+    color: "#F44336",
+    marginBottom: 12,
+  },
+  violationImage: {
     width: "100%",
-    justifyContent: "space-between",
+    height: 150,
+    borderRadius: 8,
+    marginBottom: 12,
+  },
+  footer: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  paymentStatus: {
+    fontSize: 14,
+    fontWeight: "bold",
   },
 });
+
+export default NotificationCard;
