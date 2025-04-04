@@ -31,7 +31,7 @@ const Notification = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const API_URL = "http://192.168.1.3:8000";
+  const API_URL = "11.1.12.312.3"; // Replace with EXPO_PUBLIC_SERVER_URL in the .env file
 
   const fetchViolations = async () => {
     try {
